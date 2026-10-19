@@ -48,7 +48,7 @@ dependencies:
   intl: ^0.20.3
 
   # database
-  floor: ^1.5.0
+  floor_community: ^1.1.0
 
   # make request to api
   retrofit: ^4.10.0
@@ -70,10 +70,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  retrofit_generator: ^8.2.1
-  floor_generator: ^1.5.0
-  build_runner: ^2.4.13
-
+  build_runner: ">=2.15.0 <3.0.0"
+  retrofit_generator: ^10.0.6   # version I found listed on pub.dev; let pub choose
+  floor_generator_community: ^1.1.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
