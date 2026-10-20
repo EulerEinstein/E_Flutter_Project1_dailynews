@@ -1,15 +1,15 @@
 import 'package:floor_community/floor.dart';
-import 'package:daily_news/features/daily_news/data/models/article.dart';
+import 'package:daily_news/features/daily_news/data/models/article_table.dart';
 
 @dao
 abstract class ArticleDao {
 
   @Insert()
-  Future<void> insertArticle(ArticleModel article);
+  Future<void> insertArticle(ArticleTable article);
 
   @delete
-  Future<void> deleteArticle(ArticleModel article);
+  Future<void> deleteArticle(ArticleTable article);
 
   @Query('SELECT * FROM article')
-  Future<List<ArticleModel>> getArticles();
+  Future<List<ArticleTable>> getArticles();
 }

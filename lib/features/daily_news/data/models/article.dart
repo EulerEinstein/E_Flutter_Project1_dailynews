@@ -1,45 +1,18 @@
 import 'package:daily_news/features/daily_news/domain/entities/article.dart';
-import 'package:floor_community/floor.dart';
 
-@Entity(tableName: 'article')
+/// API model: JSON -> object. It only exists to read the NewsAPI answer.
+/// The fields are inherited from [ArticleEntity] and are NOT declared again.
 class ArticleModel extends ArticleEntity {
-  @override
-  @PrimaryKey(autoGenerate: true)
-  final int? id;
-  @override
-  final String? author;
-  @override
-  final String? title;
-  @override
-  final String? description;
-  @override
-  final String? url;
-  @override
-  final String? urlToImage;
-  @override
-  final String? publishedAt;
-  @override
-  final String? content;
-
   const ArticleModel({
-    this.id,
-    this.author,
-    this.title,
-    this.description,
-    this.url,
-    this.urlToImage,
-    this.publishedAt,
-    this.content,
-  }) : super(
-          id: id,
-          author: author,
-          title: title,
-          description: description,
-          url: url,
-          urlToImage: urlToImage,
-          publishedAt: publishedAt,
-          content: content,
-        );
+    super.id,
+    super.author,
+    super.title,
+    super.description,
+    super.url,
+    super.urlToImage,
+    super.publishedAt,
+    super.content,
+  });
 
   factory ArticleModel.fromJson(Map<String, dynamic> map) {
     return ArticleModel(
@@ -50,19 +23,6 @@ class ArticleModel extends ArticleEntity {
       urlToImage: map['urlToImage'] ?? "",
       publishedAt: map['publishedAt'] ?? "",
       content: map['content'] ?? "",
-    );
-  }
-
-  factory ArticleModel.fromEntity(ArticleEntity entity) {
-    return ArticleModel(
-      id: entity.id,
-      author: entity.author,
-      title: entity.title,
-      description: entity.description,
-      url: entity.url,
-      urlToImage: entity.urlToImage,
-      publishedAt: entity.publishedAt,
-      content: entity.content,
     );
   }
 }

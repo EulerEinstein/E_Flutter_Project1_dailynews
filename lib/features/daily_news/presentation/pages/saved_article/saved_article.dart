@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 
+import 'package:daily_news/config/routes/routes.dart';
 import 'package:daily_news/features/daily_news/domain/entities/article.dart';
 import 'package:daily_news/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:daily_news/features/daily_news/presentation/widgets/article_tile.dart';
 import 'package:daily_news/injection_container.dart';
 
-class SavedArticles extends HookWidget {
+class SavedArticles extends StatelessWidget {
   const SavedArticles({super.key});
 
   @override
@@ -81,6 +81,6 @@ class SavedArticles extends HookWidget {
   }
 
   void _onArticlePressed(BuildContext context, ArticleEntity article) {
-    Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+    Navigator.pushNamed(context, AppRoutes.articleDetails, arguments: article);
   }
 }

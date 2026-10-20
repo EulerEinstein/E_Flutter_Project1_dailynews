@@ -3,13 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'package:daily_news/features/daily_news/domain/entities/article.dart';
 
 abstract class RemoteArticlesState extends Equatable {
-  final List<ArticleEntity> ? articles;
-  final DioException ? error;
+  final List<ArticleEntity>? articles;
+  final DioException? error;
 
   const RemoteArticlesState({this.articles, this.error});
 
+  // Nullable on purpose: Loading has no articles and no error.
   @override
-  List<Object> get props => [articles!, error!];
+  List<Object?> get props => [articles, error];
 }
 
 class RemoteArticlesLoading extends RemoteArticlesState {

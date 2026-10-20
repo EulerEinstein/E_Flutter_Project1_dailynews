@@ -9,22 +9,20 @@ class RemoteArticlesBloc extends Bloc<RemoteArticlesEvent, RemoteArticlesState> 
   final GetArticleUseCase _getArticleUseCase;
 
   RemoteArticlesBloc(this._getArticleUseCase) : super(const RemoteArticlesLoading()) {
-    on <GetArticles> (onGetArticles);
+    on<GetArticles>(onGetArticles);
   }
 
-  void onGetArticles(GetArticles event, Emitter<RemoteArticlesState> emit) async {
+  Future<void> onGetArticles(GetArticles event, Emitter<RemoteArticlesState> emit) async {
+    // Show the spinner again when the user taps "retry".
+    emit(const RemoteArticlesLoading());
+
     final dataState = await _getArticleUseCase();
 
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
-      emit(
-        RemoteArticlesDone(dataState.data!)
-      );
-    }
-
-    if(dataState is DataFailed) {
-      emit(
-        RemoteArticlesError(dataState.error!)
-      );
+    if (dataState is DataFailed) {
+      emit(RemoteArticlesError(dataState.error!));
+    } else {
+      // Success, also when the list is empty (the old code stayed on the spinner).
+      emit(RemoteArticlesDone(dataState.data ?? const []));
     }
   }
 }

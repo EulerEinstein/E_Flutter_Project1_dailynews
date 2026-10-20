@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 
 import 'package:daily_news/features/daily_news/domain/entities/article.dart';
 import 'package:daily_news/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:daily_news/injection_container.dart';
 
-class ArticleDetailsView extends HookWidget {
+class ArticleDetailsView extends StatelessWidget {
   final ArticleEntity? article;
 
   const ArticleDetailsView({super.key, this.article});
@@ -86,7 +85,13 @@ class ArticleDetailsView extends HookWidget {
       width: double.maxFinite,
       height: 250,
       margin: const EdgeInsets.only(top: 14),
-      child: Image.network(article!.urlToImage ?? '', fit: BoxFit.cover),
+      child: Image.network(
+        article!.urlToImage ?? '',
+        fit: BoxFit.cover,
+        // empty / broken image URL no longer throws
+        errorBuilder: (context, error, stackTrace) =>
+            const Center(child: Icon(Icons.broken_image_outlined, size: 48)),
+      ),
     );
   }
 
